@@ -18,56 +18,35 @@ Ask Claude "should I go heavy today?" and have it answer from your actual recove
 - **Automatic token refresh** — handles OAuth refresh token rotation seamlessly
 - **Works everywhere** — Claude Code CLI, Claude Desktop app, and claude.ai/code
 
-## Quick Start
+## Quick Start (3 Steps)
 
 ### 1. Install via pip
 
 ```bash
-pip install whoop-mcp
+pip install whoop-as
 ```
 
-### 2. Create a WHOOP Developer App
-
-1. Go to the [WHOOP Developer Dashboard](https://developer-dashboard.whoop.com)
-2. Sign in with your WHOOP account
-3. Create an App and add **Redirect URI**: `http://localhost:8765/callback`
-4. Enable scopes: `offline read:profile read:recovery read:cycles read:sleep read:workout read:body_measurement`
-5. Copy your **Client ID** and **Client Secret**
-
-### 3. Set up credentials
-
-Create or update `.env` in your home directory or the repo root:
+### 2. Run interactive setup
 
 ```bash
-WHOOP_CLIENT_ID=your_client_id_here
-WHOOP_CLIENT_SECRET=your_client_secret_here
-WHOOP_REDIRECT_URI=http://localhost:8765/callback
+whoop-as-setup
 ```
 
-### 4. Authenticate (one time)
+This will:
+- Open your browser
+- Ask you to sign in to WHOOP
+- Automatically save your tokens
+- Confirm you're ready to go
 
-```bash
-whoop-mcp-auth
-```
+### 3. Add to Claude
 
-Browser opens → sign in to WHOOP → approve. Tokens are saved to `~/.whoop-mcp/tokens.json` and refreshed automatically.
-
-### 5. Add to Claude Code
-
+**Claude Code:**
 ```bash
 claude mcp add --transport stdio whoop --scope user -- python -m whoop_mcp.server
 ```
 
-Or with a specific Python interpreter:
-
-```bash
-claude mcp add --transport stdio whoop --scope user -- /path/to/python -m whoop_mcp.server
-```
-
-### 6. Add to Claude Desktop (Optional)
-
+**Claude Desktop (Optional):**
 Edit `~/Library/Application Support/Claude/claude_desktop_config.json` and add:
-
 ```json
 {
   "mcpServers": {
@@ -79,7 +58,43 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` and add:
 }
 ```
 
-Then restart Claude Desktop.
+That's it! You're ready to use whoop-as with Claude. 🎉
+
+---
+
+## Manual Setup (If Needed)
+
+If you prefer to configure manually or have an existing WHOOP developer app:
+
+### 1. Create a WHOOP Developer App (if you don't have one)
+
+1. Go to [WHOOP Developer Dashboard](https://developer-dashboard.whoop.com)
+2. Sign in with your WHOOP account
+3. Create an App with **Redirect URI**: `http://localhost:8766/callback`
+4. Enable scopes: `offline read:profile read:recovery read:cycles read:sleep read:workout read:body_measurement`
+5. Copy your **Client ID** and **Client Secret**
+
+### 2. Set environment variables
+
+```bash
+export WHOOP_CLIENT_ID=your_client_id
+export WHOOP_CLIENT_SECRET=your_client_secret
+```
+
+Or create `~/.whoop-as/.env`:
+```bash
+mkdir -p ~/.whoop-as
+cat > ~/.whoop-as/.env << 'EOF'
+WHOOP_CLIENT_ID=your_client_id
+WHOOP_CLIENT_SECRET=your_client_secret
+EOF
+```
+
+### 3. Run setup
+
+```bash
+whoop-as-setup
+```
 
 ## Usage
 

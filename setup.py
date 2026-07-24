@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="whoop-mcp",
+    name="whoop-as",
     version="1.0.0",
     description="WHOOP MCP server for Claude — access recovery, sleep, workouts, and cycle data",
     author="Anmol Sharma",
@@ -19,8 +19,9 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "whoop-mcp-server=whoop_mcp.server:main",
-            "whoop-mcp-auth=whoop_mcp.auth:main",
+            "whoop-as-setup=whoop_mcp.setup:main",
+            "whoop-as-auth=whoop_mcp.auth:main",
+            "whoop-as-server=whoop_mcp.server:main",
         ]
     },
 )
