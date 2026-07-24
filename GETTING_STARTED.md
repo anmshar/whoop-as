@@ -61,6 +61,9 @@ Enable these scopes:
 
 Click **Save**
 
+![WHOOP Scopes Configuration](../../docs/images/whoop-scopes.png)
+*Example: Scopes configuration in WHOOP Developer Dashboard*
+
 ### 1.6 Copy Your Credentials
 
 You should now see:
@@ -366,6 +369,17 @@ Then re-add to Claude:
 ```bash
 claude mcp add --transport stdio whoop --scope user -- python -m whoop_mcp.server
 ```
+
+### Rate Limits & API Info
+
+WHOOP API has rate limits to ensure fair usage:
+
+![WHOOP Rate Limits](docs/images/whoop-rate-limits.png)
+
+- **Daily Limit**: 10,000 requests per day
+- **Minute Limit**: 100 requests per minute
+
+whoop-as is efficient and shouldn't hit these limits in normal use. If you hit rate limits, just wait a minute or an hour depending on the limit.
 
 ---
 
