@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "whoop-as"
-version = "1.0.0"
+version = "1.0.1"
 description = "WHOOP MCP server for Claude — access recovery, sleep, workouts, and cycle data"
 readme = "README.md"
 requires-python = ">=3.10"

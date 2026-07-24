@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="whoop-as",
-    version="1.0.0",
+    version="1.0.1",
     description="WHOOP MCP server for Claude — access recovery, sleep, workouts, and cycle data",
     author="Anmol Sharma",
     author_email="a.sharma@stratolution.de",
