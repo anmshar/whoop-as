@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whoop-mcp"
+version = "1.0.0"
+description = "WHOOP MCP server for Claude — access recovery, sleep, workouts, and cycle data"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Anmol Sharma", email = "a.sharma@stratolution.de" }
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "whoop",
+    "fitness",
+    "recovery",
+    "sleep",
+    "workouts"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/anmolsharma/whoop-mcp"
+Documentation = "https://github.com/anmolsharma/whoop-mcp#readme"
+Repository = "https://github.com/anmolsharma/whoop-mcp.git"
+Issues = "https://github.com/anmolsharma/whoop-mcp/issues"
+
+[project.scripts]
+whoop-mcp-server = "whoop_mcp.server:main"
+whoop-mcp-auth = "whoop_mcp.auth:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages]
+find = { where = ["src"] }
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["build", "dist", ".venv"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
