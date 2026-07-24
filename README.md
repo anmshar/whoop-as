@@ -18,83 +18,26 @@ Ask Claude "should I go heavy today?" and have it answer from your actual recove
 - **Automatic token refresh** — handles OAuth refresh token rotation seamlessly
 - **Works everywhere** — Claude Code CLI, Claude Desktop app, and claude.ai/code
 
-## Quick Start (3 Steps)
+## Quick Start
 
-### 1. Install via pip
+**Detailed step-by-step guide:** See [GETTING_STARTED.md](GETTING_STARTED.md) for complete instructions with screenshots and troubleshooting.
+
+### TL;DR (3 Steps)
 
 ```bash
+# 1. Install
 pip install whoop-as
-```
 
-### 2. Run interactive setup
-
-```bash
+# 2. Setup (opens browser to sign in to WHOOP)
 whoop-as-setup
-```
 
-This will:
-- Open your browser
-- Ask you to sign in to WHOOP
-- Automatically save your tokens
-- Confirm you're ready to go
-
-### 3. Add to Claude
-
-**Claude Code:**
-```bash
+# 3. Add to Claude
 claude mcp add --transport stdio whoop --scope user -- python -m whoop_mcp.server
-```
-
-**Claude Desktop (Optional):**
-Edit `~/Library/Application Support/Claude/claude_desktop_config.json` and add:
-```json
-{
-  "mcpServers": {
-    "whoop": {
-      "command": "python",
-      "args": ["-m", "whoop_mcp.server"]
-    }
-  }
-}
 ```
 
 That's it! You're ready to use whoop-as with Claude. 🎉
 
----
-
-## Manual Setup (If Needed)
-
-If you prefer to configure manually or have an existing WHOOP developer app:
-
-### 1. Create a WHOOP Developer App (if you don't have one)
-
-1. Go to [WHOOP Developer Dashboard](https://developer-dashboard.whoop.com)
-2. Sign in with your WHOOP account
-3. Create an App with **Redirect URI**: `http://localhost:8766/callback`
-4. Enable scopes: `offline read:profile read:recovery read:cycles read:sleep read:workout read:body_measurement`
-5. Copy your **Client ID** and **Client Secret**
-
-### 2. Set environment variables
-
-```bash
-export WHOOP_CLIENT_ID=your_client_id
-export WHOOP_CLIENT_SECRET=your_client_secret
-```
-
-Or create `~/.whoop-as/.env`:
-```bash
-mkdir -p ~/.whoop-as
-cat > ~/.whoop-as/.env << 'EOF'
-WHOOP_CLIENT_ID=your_client_id
-WHOOP_CLIENT_SECRET=your_client_secret
-EOF
-```
-
-### 3. Run setup
-
-```bash
-whoop-as-setup
-```
+**New users?** Start with [GETTING_STARTED.md](GETTING_STARTED.md) for detailed step-by-step instructions.
 
 ## Usage
 
